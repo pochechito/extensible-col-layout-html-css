@@ -1,0 +1,72 @@
+//Colors of the app
+$colors:( primary: #125689, secondary: #326644, tertiary: #745892, );
+//Resolutions to generate the code
+$xs: 540px;
+$sm: 720px;
+$md: 960px;
+$lg: 1140px;
+$xl: 2000px;
+$resolutions-range: ( xs: (min:0px, max:$xs - 1px), sm: (min:$xs, max:$sm - 1px), md: (min:$sm, max:$md - 1px), lg: (min:$md, max:$lg - 1px), xl: (min:$lg, max:$xl));
+//Number of the row used for the app
+$num-rows: 12;
+$prefix-app: "nt";
+@mixin solid-element {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+//Grid system for the app
+@for $i from 1 through $num-rows {
+    @each $name,
+    $value in $resolutions-range {
+        @media screen and (min-width: map-get($value, min)) and (max-width: map-get($value, max)) {
+            .#{$prefix-app}-col-#{$name}-#{$i} {
+                @include solid-element();
+                width: (100%/$num-rows)*$i;
+            }
+        }
+    }
+}
+
+.#{$prefix-app}-paint {
+    background-color: map-get($colors, primary);
+}
+
+@each $name,
+$value in $colors {
+    .#{$prefix-app}-paint-#{$name} {
+        background-color: $value;
+    }
+}
+
+.NT-infobox {}
+
+.NT-biography {}
+
+.NT-vcard {}
+
+.NT-persona {}
+
+.NT-image {}
+
+.NT-etiqueta {}
+
+.NT-category {}
+
+.NT-plainlist {}
+
+.NT-role {}
+
+.NT-biography {}
+
+.NT-noprint {}
+
+.NT-extiw {}
